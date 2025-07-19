@@ -52,7 +52,8 @@ public class TwoSumProblem {
    * Brute-force approach:
    * For each pair of indices (i, j), check if nums[i] + nums[j] == target.
    * If so, return their indices. Time Complexity: O(n^2), Space: O(1).
-   */
+   */ 
+  // TTime Complexity : O(n^2)
   public static int[] twoSum(int[] nums, int target) {
     int arr[] = new int[2];
     for (int i = 0; i < nums.length; i++) {

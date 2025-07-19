@@ -24,8 +24,6 @@ public class LongestSubarrayWithSum {
      * Explanation: No subarray with sum = 5 is present in arr[].
      */
 
-
-     
     /**
      * Finds the length of the longest subarray with sum equal to k.
      *
@@ -52,6 +50,32 @@ public class LongestSubarrayWithSum {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
+
+    // User function Template for Java
+
+    // Sliding window -> work only for positive
+    
+    class Solution {
+        public int longestSubarray(int[] arr, int k) {
+            // code here
+            int start = 0;
+            int max = 0;
+            int sum = 0;
+            for (int i = 0; i < arr.length; i++) {
+                sum += arr[i]; // Add the CUrrent Element
+
+                while (sum > k && start < arr.length) {
+                    sum -= arr[start]; // removing an element from start
+                    start++;
+                }
+                if (sum == k) {
+                    max = Math.max(max, i - start + 1);
+                }
+            }
+            return max;
+        }
+    }
+
     public static int longestSubarray(int[] arr, int k) {
         // prefix sum + hashmap
         HashMap<Integer, Integer> hm = new HashMap<>();
