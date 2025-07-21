@@ -26,7 +26,7 @@ public class LeftRotate {
         int n = arr.length;
         int temp[] = Arrays.copyOf(arr,n);
         k = k%n;
-         int index=0;
+        int index=0;
         for(int i=n-k;i<n;i++){
             temp[index++] = arr[i];
         }

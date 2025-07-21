@@ -86,7 +86,6 @@ public class TwoSumProblem {
       hm.put(nums[i], i);
     }
     return arr;
-
   }
 
   public static void main(String[] args) {
