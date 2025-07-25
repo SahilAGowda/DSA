@@ -63,29 +63,66 @@ public class NextPermutation {
         }
     }
 
+    /**
+     * Next Permutation Algorithm - Detailed Explanation:
+     * 
+     * The goal is to find the lexicographically next greater permutation.
+     * If no such permutation exists, return the smallest permutation (sorted ascending).
+     * 
+     * Algorithm Steps:
+     * 
+     * Step 1: Find the breakpoint (pivot)
+     * - Traverse from right to left to find the first index 'i' where nums[i] < nums[i+1]
+     * - This is the "breakpoint" or "pivot" - the rightmost character that can be increased
+     * - If no such index exists, the array is in descending order (largest permutation)
+     * 
+     * Step 2: Find the next greater element
+     * - If breakpoint exists, find the smallest number on the right side that is greater than nums[breakpoint]
+     * - This ensures we get the next lexicographically greater permutation, not just any greater one
+     * 
+     * Step 3: Swap and reverse
+     * - Swap the breakpoint with the found element
+     * - Reverse the suffix (from breakpoint+1 to end) to get the smallest possible arrangement
+     * 
+     * Example: [1,2,3] → [1,3,2]
+     * Step 1: breakpoint at index 1 (nums[1]=2 < nums[2]=3)
+     * Step 2: find next greater than 2, which is 3 at index 2
+     * Step 3: swap(2,3) → [1,3,2], reverse suffix (nothing to reverse)
+     * 
+     * Example: [1,1,5] → [1,5,1]
+     * Step 1: breakpoint at index 0 (nums[0]=1 < nums[1]=1? No, nums[1]=1 < nums[2]=5? Yes)
+     * Actually: breakpoint at index 1 (nums[1]=1 < nums[2]=5)
+     * Step 2: find next greater than 1, which is 5 at index 2
+     * Step 3: swap(1,5) → [1,5,1], reverse suffix (nothing to reverse)
+     */
     public static void nextPermutation(int[] nums) {
-        // 3 steps need to be followed
-        // 1.Identify the breakpoint index
-        // 2.swap the breakpoint value with very close next greater value
-        // 3.reverse from ind+1 to n-1
         int n = nums.length;
         int ind = -1;
+        
+        // Step 1: Find the breakpoint (rightmost nums[i] < nums[i+1])
         for (int i = n - 2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
                 ind = i;
                 break;
             }
         }
+        
+        // If no breakpoint found, array is in descending order (largest permutation)
+        // So we reverse the entire array to get the smallest permutation
         if (ind == -1) {
             reverse(nums, 0, n - 1);
             return;
         }
+        
+        // Step 2: Find the smallest number greater than nums[ind] from the right
         for (int i = n - 1; i > ind; i--) {
             if (nums[i] > nums[ind]) {
                 swap(nums, i, ind);
                 break;
             }
         }
+        
+        // Step 3: Reverse the suffix to get the next smallest arrangement
         reverse(nums, ind + 1, n - 1);
     }
 

@@ -49,9 +49,30 @@ public class KadaneAlgorithm {
         }
         return max;
     }
+
+    /**
+     * CORRECTED Kadane's Algorithm - Alternative approach
+     * Issue in original: max = Math.max(arr[i]+max, max) is wrong
+     * Should be: max = Math.max(arr[i], arr[i]+max)
+     * 
+     * Logic: At each position, decide whether to:
+     * 1. Start a new subarray from current element (arr[i])
+     * 2. Extend the previous subarray (arr[i] + max)
+     */
+    public static int KadaneApproach2(int arr[]){
+        int max = arr[0];  // max sum ending at current position
+        int res = arr[0];  // overall maximum sum
+        for(int i=1;i<arr.length;i++){
+            max = Math.max(arr[i], arr[i] + max);  // FIXED: arr[i] vs arr[i]+max
+            res = Math.max(res, max);
+        }
+        return res;
+    }
     public static void main(String[] args) {
         int arr[] = {-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println(longestSubarray(arr));
+        // System.out.println(longestSubarray(arr));
         System.out.println(KadaneApproach(arr));
+        System.out.println(KadaneApproach2(arr));
+        
     }
 }
