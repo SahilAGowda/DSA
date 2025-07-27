@@ -99,7 +99,7 @@ public class NextPermutation {
         int n = nums.length;
         int ind = -1;
         
-        // Step 1: Find the breakpoint (rightmost nums[i] < nums[i+1])
+        // Step 1: Find the breakpoint (rightmost nums[i] < nums[i+1])  
         for (int i = n - 2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
                 ind = i;
