@@ -51,6 +51,6 @@ public class Pascal {
     public static void main(String[] args) {
         List<List<Integer>> a = generate(5);
         System.out.println(a);
-
+        
     }
 }
