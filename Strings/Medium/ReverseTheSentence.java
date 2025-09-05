@@ -1,4 +1,8 @@
-public class ReverseWordInAString {
+package Medium;
+
+import java.util.Stack;
+
+public class ReverseTheSentence {
     /*
      * Given an input string s, reverse the order of the words.
      * 
@@ -39,22 +43,39 @@ public class ReverseWordInAString {
      * There is at least one word in s.
      * 
      * 
-     * Follow-up: If the string data type is mutable in your language, can you solve
-     * it in-place with O(1) extra space?
+     * Follow-up: If the string data type is mutable in your language, can you
      */
     public static String reverseWords(String s) {
         s = s.trim();
-        String split[] = s.split("\\s+");
+        // String split[] = s.split("\\s+");
+        // String ans = "";
+        // for(int i=split.length-1;i>0;i--){
+        // ans+=(split[i]+" ");
+        // }
+        // ans+=split[0];
+        // return ans;
         String ans = "";
-        for (int i = split.length - 1; i > 0; i--) {
-            ans += (split[i] + " ");
+        Stack<String> st = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') {
+                if (!ans.isEmpty()) { // check the answer is not empty
+                    st.push(ans);
+                    ans = "";
+                }
+            } else {
+                ans += s.charAt(i);
+            }
         }
-        ans += split[0];
-        return ans;
+        st.push(ans);
+        System.out.println(st);
+        String res = "";
+        while (!st.isEmpty()) {
+            res += (st.pop() + " ");
+        }
+        return res.trim();
     }
-
     public static void main(String[] args) {
-        String s = "a good   example";
+        String s = "the sky is blue";
         System.out.println(reverseWords(s));
     }
 }

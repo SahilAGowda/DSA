@@ -1,3 +1,5 @@
+package Easy;
+
 class RemoveOuterParenthesis {
     /*
      * A valid parentheses string is either empty "", "(" + A + ")", or A + B, where
