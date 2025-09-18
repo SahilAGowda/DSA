@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MoveZeroes {
     /*
-    ?Given an integer array nums, move all 0's to the end of it while maintaining
+     * ?Given an integer array nums, move all 0's to the end of it while maintaining
      * the relative order of the non-zero elements.
      * 
      * Note that you must do this in-place without making a copy of the array.
@@ -34,6 +34,12 @@ public class MoveZeroes {
     // System.out.println(Arrays.toString(nums));
     // }
 
+    // i: Scans the entire array — it's the "finder". It looks for non-zero
+    // elements.
+
+    // j: Marks the position where the next non-zero element should go — it's the
+    // "placer".
+    
     public static void moveZeroes(int nums[]) {
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
